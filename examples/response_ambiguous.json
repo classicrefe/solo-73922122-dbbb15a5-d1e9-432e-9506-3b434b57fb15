@@ -1,0 +1,110 @@
+{
+  "optimal_total_matched_cents": 60000,
+  "total_optimal_solutions": 2,
+  "is_unique": false,
+  "solutions": [
+    {
+      "total_matched_cents": 60000,
+      "matches": [
+        {
+          "bank_entry_id": "BANK-X1",
+          "settlement_ids": [
+            "STL-A1",
+            "STL-A2"
+          ],
+          "currency": "CNY",
+          "amount_cents": 30000
+        },
+        {
+          "bank_entry_id": "BANK-X2",
+          "settlement_ids": [
+            "STL-A3",
+            "STL-A4"
+          ],
+          "currency": "CNY",
+          "amount_cents": 30000
+        }
+      ],
+      "unmatched_settlement_ids": [],
+      "unmatched_bank_entry_ids": []
+    },
+    {
+      "total_matched_cents": 60000,
+      "matches": [
+        {
+          "bank_entry_id": "BANK-X1",
+          "settlement_ids": [
+            "STL-A1",
+            "STL-A4"
+          ],
+          "currency": "CNY",
+          "amount_cents": 30000
+        },
+        {
+          "bank_entry_id": "BANK-X2",
+          "settlement_ids": [
+            "STL-A2",
+            "STL-A3"
+          ],
+          "currency": "CNY",
+          "amount_cents": 30000
+        }
+      ],
+      "unmatched_settlement_ids": [],
+      "unmatched_bank_entry_ids": []
+    }
+  ],
+  "auto_confirm": [],
+  "manual_review": [
+    {
+      "bank_entry_id": "BANK-X1",
+      "currency": "CNY",
+      "amount_cents": 30000,
+      "candidate_settlement_groups": [
+        [
+          "STL-A1",
+          "STL-A2"
+        ],
+        [
+          "STL-A1",
+          "STL-A4"
+        ],
+        [
+          "STL-A2",
+          "STL-A3"
+        ],
+        [
+          "STL-A3",
+          "STL-A4"
+        ]
+      ]
+    },
+    {
+      "bank_entry_id": "BANK-X2",
+      "currency": "CNY",
+      "amount_cents": 30000,
+      "candidate_settlement_groups": [
+        [
+          "STL-A1",
+          "STL-A2"
+        ],
+        [
+          "STL-A1",
+          "STL-A4"
+        ],
+        [
+          "STL-A2",
+          "STL-A3"
+        ],
+        [
+          "STL-A3",
+          "STL-A4"
+        ]
+      ]
+    }
+  ],
+  "never_matched": {
+    "settlements": [],
+    "bank_entries": []
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "optimal_total_matched_cents": 10000,
+  "total_optimal_solutions": 1,
+  "is_unique": true,
+  "solutions": [
+    {
+      "total_matched_cents": 10000,
+      "matches": [
+        {
+          "bank_entry_id": "BANK-E1",
+          "settlement_ids": [
+            "STL-D1"
+          ],
+          "currency": "CNY",
+          "amount_cents": 10000
+        }
+      ],
+      "unmatched_settlement_ids": [
+        "STL-D2",
+        "STL-D3",
+        "STL-D4"
+      ],
+      "unmatched_bank_entry_ids": [
+        "BANK-E2",
+        "BANK-E3",
+        "BANK-E4"
+      ]
+    }
+  ],
+  "auto_confirm": [
+    {
+      "bank_entry_id": "BANK-E1",
+      "settlement_ids": [
+        "STL-D1"
+      ],
+      "currency": "CNY",
+      "amount_cents": 10000
+    }
+  ],
+  "manual_review": [],
+  "never_matched": {
+    "settlements": [
+      "STL-D2",
+      "STL-D3",
+      "STL-D4"
+    ],
+    "bank_entries": [
+      "BANK-E2",
+      "BANK-E3",
+      "BANK-E4"
+    ]
+  }
+}

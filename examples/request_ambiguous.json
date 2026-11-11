@@ -1,0 +1,12 @@
+{
+  "settlements": [
+    {"id": "STL-A1", "date": "2026-11-01", "currency": "CNY", "amount_cents": 10000},
+    {"id": "STL-A2", "date": "2026-11-01", "currency": "CNY", "amount_cents": 20000},
+    {"id": "STL-A3", "date": "2026-11-01", "currency": "CNY", "amount_cents": 10000},
+    {"id": "STL-A4", "date": "2026-11-01", "currency": "CNY", "amount_cents": 20000}
+  ],
+  "bank_entries": [
+    {"id": "BANK-X1", "date": "2026-11-02", "currency": "CNY", "amount_cents": 30000},
+    {"id": "BANK-X2", "date": "2026-11-03", "currency": "CNY", "amount_cents": 30000}
+  ]
+}

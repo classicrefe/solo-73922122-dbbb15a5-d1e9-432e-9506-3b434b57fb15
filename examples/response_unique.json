@@ -1,0 +1,77 @@
+{
+  "optimal_total_matched_cents": 24000,
+  "total_optimal_solutions": 1,
+  "is_unique": true,
+  "solutions": [
+    {
+      "total_matched_cents": 24000,
+      "matches": [
+        {
+          "bank_entry_id": "BANK-CR-1001",
+          "settlement_ids": [
+            "STL-20261101-001",
+            "STL-20261101-002"
+          ],
+          "currency": "CNY",
+          "amount_cents": 15800
+        },
+        {
+          "bank_entry_id": "BANK-CR-1002",
+          "settlement_ids": [
+            "STL-20261101-003"
+          ],
+          "currency": "CNY",
+          "amount_cents": 4200
+        },
+        {
+          "bank_entry_id": "BANK-CR-1003",
+          "settlement_ids": [
+            "STL-20261102-001",
+            "STL-20261102-002"
+          ],
+          "currency": "USD",
+          "amount_cents": 4000
+        }
+      ],
+      "unmatched_settlement_ids": [],
+      "unmatched_bank_entry_ids": [
+        "BANK-CR-1004"
+      ]
+    }
+  ],
+  "auto_confirm": [
+    {
+      "bank_entry_id": "BANK-CR-1001",
+      "settlement_ids": [
+        "STL-20261101-001",
+        "STL-20261101-002"
+      ],
+      "currency": "CNY",
+      "amount_cents": 15800
+    },
+    {
+      "bank_entry_id": "BANK-CR-1002",
+      "settlement_ids": [
+        "STL-20261101-003"
+      ],
+      "currency": "CNY",
+      "amount_cents": 4200
+    },
+    {
+      "bank_entry_id": "BANK-CR-1003",
+      "settlement_ids": [
+        "STL-20261102-001",
+        "STL-20261102-002"
+      ],
+      "currency": "USD",
+      "amount_cents": 4000
+    }
+  ],
+  "manual_review": [],
+  "never_matched": {
+    "settlements": [],
+    "bank_entries": [
+      "BANK-CR-1004"
+    ]
+  }
+}

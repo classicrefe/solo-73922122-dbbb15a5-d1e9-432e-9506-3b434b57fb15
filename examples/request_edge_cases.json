@@ -1,0 +1,14 @@
+{
+  "settlements": [
+    {"id": "STL-D1", "date": "2026-11-01", "currency": "CNY", "amount_cents": 10000},
+    {"id": "STL-D2", "date": "2026-11-01", "currency": "CNY", "amount_cents": 20000},
+    {"id": "STL-D3", "date": "2026-11-01", "currency": "EUR", "amount_cents": 5000},
+    {"id": "STL-D4", "date": "2026-11-01", "currency": "CNY", "amount_cents": 7000}
+  ],
+  "bank_entries": [
+    {"id": "BANK-E1", "date": "2026-11-02", "currency": "CNY", "amount_cents": 10000},
+    {"id": "BANK-E2", "date": "2026-11-10", "currency": "CNY", "amount_cents": 20000},
+    {"id": "BANK-E3", "date": "2026-11-03", "currency": "USD", "amount_cents": 5000},
+    {"id": "BANK-E4", "date": "2026-11-04", "currency": "CNY", "amount_cents": 99999}
+  ]
+}
