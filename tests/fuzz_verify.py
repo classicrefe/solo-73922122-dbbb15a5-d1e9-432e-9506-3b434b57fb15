@@ -9,6 +9,10 @@ import random
 import sys
 from datetime import date, timedelta
 from itertools import product
+from pathlib import Path
+
+# 允许直接用 `python tests/fuzz_verify.py` 运行（不依赖 PYTHONPATH）
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.schemas import ReconcileRequest
 from app.solver import solve

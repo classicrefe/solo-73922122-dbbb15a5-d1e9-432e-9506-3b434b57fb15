@@ -4,7 +4,8 @@ FROM python:3.11-slim
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    RECEIPT_DATA_DIR=/data
 
 WORKDIR /srv
 
@@ -12,13 +13,18 @@ WORKDIR /srv
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 再拷应用代码
+# 应用代码 + 本地演示银行源（同一镜像可运行两种角色）
 COPY app ./app
+COPY bank_source ./bank_source
 
-# 非 root 用户运行
+# 非 root 用户运行；/data 用于共享 SQLite 索引与本地原件
 RUN useradd --create-home --uid 10001 appuser \
-    && chown -R appuser:appuser /srv
+    && mkdir -p /data \
+    && chown -R appuser:appuser /srv /data
 USER appuser
+
+# 回单数据目录（Compose 中挂载命名卷，重启后保留）
+VOLUME ["/data"]
 
 EXPOSE 8000
 

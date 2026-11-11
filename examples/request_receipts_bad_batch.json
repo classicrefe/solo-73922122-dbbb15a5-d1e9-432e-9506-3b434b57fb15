@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "transaction_id": "RCPT-DEMO-002",
+      "sha256": "075383616cdc9c330873460aeb0db278fbd3d03a70154968b5a84906390dfa44"
+    },
+    {
+      "transaction_id": "RCPT-DEMO-BAD",
+      "sha256": "46aaf6a1078682006f193dd7fbc57fa73f685775e10c5137b28195487b8a4b66"
+    }
+  ]
+}

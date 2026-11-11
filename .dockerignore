@@ -6,5 +6,5 @@ __pycache__/
 venv/
 .git/
 .gitignore
-tests/
+data/
 *.md

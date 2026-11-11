@@ -1,13 +1,55 @@
+# 两个 API 进程 + 一个本地银行回单源，共享同一数据卷。
+#
+#   API-1: http://localhost:8000/docs
+#   API-2: http://localhost:8001/docs
+#   银行源: http://localhost:9000/receipts （文档 http://localhost:9000/docs）
+#
+# 两个 API 服务（reconcile-api / reconcile-api-2）运行同一个镜像、挂载同一个 receipt-data 卷；并发批次可能落在
+# 不同进程，重叠 ID 的复用 / 冲突 / 原子发布语义由共享 SQLite + 写事务保证。
+
+x-app-build: &app-build
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: reconcile-receipts-api:2.0.0
+  restart: unless-stopped
+
 services:
+  bank-source:
+    <<: *app-build
+    container_name: bank-source
+    command:
+      ["uvicorn", "bank_source.main:app", "--host", "0.0.0.0", "--port", "9000"]
+    ports:
+      - "9000:9000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:9000/health', timeout=3).status == 200 else 1)",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
   reconcile-api:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: reconcile-api:1.0.0
+    <<: *app-build
     container_name: reconcile-api
+    command:
+      ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      BANK_RECEIPT_BASE_URL: http://bank-source:9000
+      RECEIPT_DATA_DIR: /data
+    volumes:
+      - receipt-data:/data
     ports:
       - "8000:8000"
-    restart: unless-stopped
+    depends_on:
+      bank-source:
+        condition: service_healthy
     healthcheck:
       test:
         [
@@ -16,7 +58,39 @@ services:
           "-c",
           "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status == 200 else 1)",
         ]
-      interval: 30s
+      interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 5
       start_period: 10s
+
+  reconcile-api-2:
+    <<: *app-build
+    container_name: reconcile-api-2
+    command:
+      ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      BANK_RECEIPT_BASE_URL: http://bank-source:9000
+      RECEIPT_DATA_DIR: /data
+    volumes:
+      - receipt-data:/data
+    ports:
+      - "8001:8000"
+    depends_on:
+      bank-source:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3).status == 200 else 1)",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  receipt-data:
+    name: reconcile-receipts-data

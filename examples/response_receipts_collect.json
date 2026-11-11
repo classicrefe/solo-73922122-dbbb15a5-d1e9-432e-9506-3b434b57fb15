@@ -1,0 +1,23 @@
+{
+  "status": "published",
+  "batch_id": "13b32af318d14d74ba0fcd22ccdd835c",
+  "total": 2,
+  "published": 2,
+  "reused": 0,
+  "receipts": [
+    {
+      "transaction_id": "RCPT-DEMO-001",
+      "sha256": "6b7aa10c704750351c1d4bc9dbee466396644cc7ece1c82244a226eef4366a7a",
+      "size_bytes": 100,
+      "reused": false,
+      "download_url": "/api/v1/receipts/RCPT-DEMO-001"
+    },
+    {
+      "transaction_id": "RCPT-DEMO-002",
+      "sha256": "075383616cdc9c330873460aeb0db278fbd3d03a70154968b5a84906390dfa44",
+      "size_bytes": 99,
+      "reused": false,
+      "download_url": "/api/v1/receipts/RCPT-DEMO-002"
+    }
+  ]
+}
